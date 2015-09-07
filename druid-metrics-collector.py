@@ -60,7 +60,7 @@ class StatsdMetrics(object):
         logging.basicConfig(level=logging.INFO)
         self.log = logging.getLogger('druid-statsd-metrics')
         self.log.info("Statsd (host=%s, port=%s)" %(statsd_host, statsd_port))
-    self.s_conn = statsd.StatsClient(host=statsd_host, port=statsd_port)
+        self.s_conn = statsd.StatsClient(host=statsd_host, port=statsd_port)
         self.msg_count = 0
 
     @cherrypy.expose
