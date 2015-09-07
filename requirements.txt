@@ -1,0 +1,4 @@
+kafka-python==0.9.4
+logging==0.4.9.6
+statsd==3.1
+docopt==0.6.2
