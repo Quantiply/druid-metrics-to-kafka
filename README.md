@@ -1,6 +1,6 @@
 Druid metrics collector
 ===
-A simple HTTP server that forwards Druid metrics to a Kafka topic.
+A simple HTTP server that forwards Druid metrics to a Kafka topic or a statsd server.
 
 
 Druid's HTTP emitter sends a batch of metrics to the HTTP endpoint. They typically look like this :
@@ -18,12 +18,17 @@ Install
 ```
 apt-get update
 apt-get install -y python-pip
-pip install kafka-python cherrypy docopt
+pip install -r requirements.txt
 ```
 
-Run
+Run with kafka endpoint
 ---
-1. `druid-metrics-collector.py <broker_list> <kafka_topic> [--host=<socket_host>] [--port=<socket_port>]`
+1. `druid-metrics-collector.py --endpoint=kafka --broker_list=<broker_list> --kafka_topic=<kafka_topic> [--host=<socket_host>] [--port=<socket_port>]`
+2. Configure druid to send to the `http://<host>:<port>/metrics` endpoint.
+
+Run with statsd endpoint
+---
+1. `druid-metrics-collector.py [--endpoint=statsd] [--statsd_host=<statsd_host>] [--statsd_port=<statsd_port>] [--host=<socket_host>] [--port=<socket_port>]`
 2. Configure druid to send to the `http://<host>:<port>/metrics` endpoint.
 
 Test
